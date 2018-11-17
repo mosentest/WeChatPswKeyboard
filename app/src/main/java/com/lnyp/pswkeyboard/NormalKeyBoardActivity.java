@@ -12,7 +12,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 
-import com.lnyp.pswkeyboard.widget.VirtualKeyboardView;
+import com.moziqi.pwd.widget.VirtualKeyboardView;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;

@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/WeChatPswKeyboard.iml" filepath="$PROJECT_DIR$/WeChatPswKeyboard.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pswkeyboardlibrary/pswkeyboardlibrary.iml" filepath="$PROJECT_DIR$/pswkeyboardlibrary/pswkeyboardlibrary.iml" />
     </modules>
   </component>
 </project>

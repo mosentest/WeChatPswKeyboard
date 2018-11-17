@@ -9,11 +9,11 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import com.lnyp.pswkeyboard.OnPasswordInputFinish;
 import com.lnyp.pswkeyboard.R;
-import com.lnyp.pswkeyboard.adapter.KeyBoardAdapter;
+import com.moziqi.pwd.adapter.KeyBoardAdapter;
+import com.moziqi.pwd.widget.OnPasswordInputFinish;
+import com.moziqi.pwd.widget.VirtualKeyboardView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,9 +28,7 @@ public class PasswordView extends RelativeLayout {
 
     private VirtualKeyboardView virtualKeyboardView;
 
-    private TextView[] tvList;      //用数组保存6个TextView，为什么用数组？
-
-    private ImageView[] imgList;      //用数组保存6个TextView，为什么用数组？
+    private com.moziqi.pwd.widget.PasswordLayoutView pwdLayoutView;
 
     private GridView gridView;
 
@@ -54,38 +52,15 @@ public class PasswordView extends RelativeLayout {
         imgCancel = (ImageView) view.findViewById(R.id.img_cancel);
         gridView = virtualKeyboardView.getGridView();
 
-        initValueList();
+        pwdLayoutView = (com.moziqi.pwd.widget.PasswordLayoutView) view.findViewById(R.id.psw_ly);
 
-        initView(view);
+        initValueList();
 
         setupView();
 
         addView(view);
     }
 
-    private void initView(View view) {
-
-
-        tvList = new TextView[6];
-
-        imgList = new ImageView[6];
-
-        tvList[0] = (TextView) view.findViewById(R.id.tv_pass1);
-        tvList[1] = (TextView) view.findViewById(R.id.tv_pass2);
-        tvList[2] = (TextView) view.findViewById(R.id.tv_pass3);
-        tvList[3] = (TextView) view.findViewById(R.id.tv_pass4);
-        tvList[4] = (TextView) view.findViewById(R.id.tv_pass5);
-        tvList[5] = (TextView) view.findViewById(R.id.tv_pass6);
-
-
-        imgList[0] = (ImageView) view.findViewById(R.id.img_pass1);
-        imgList[1] = (ImageView) view.findViewById(R.id.img_pass2);
-        imgList[2] = (ImageView) view.findViewById(R.id.img_pass3);
-        imgList[3] = (ImageView) view.findViewById(R.id.img_pass4);
-        imgList[4] = (ImageView) view.findViewById(R.id.img_pass5);
-        imgList[5] = (ImageView) view.findViewById(R.id.img_pass6);
-
-    }
 
     // 这里，我们没有使用默认的数字键盘，因为第10个数字不显示.而是空白
     private void initValueList() {
@@ -122,19 +97,14 @@ public class PasswordView extends RelativeLayout {
                     if (currentIndex >= -1 && currentIndex < 5) {      //判断输入位置————要小心数组越界
                         ;
                         ++currentIndex;
-                        tvList[currentIndex].setText(valueList.get(position).get("name"));
 
-                        tvList[currentIndex].setVisibility(View.INVISIBLE);
-                        imgList[currentIndex].setVisibility(View.VISIBLE);
+                        pwdLayoutView.show(currentIndex, valueList.get(position).get("name"));
                     }
                 } else {
                     if (position == 11) {      //点击退格键
                         if (currentIndex - 1 >= -1) {      //判断是否删除完毕————要小心数组越界
 
-                            tvList[currentIndex].setText("");
-
-                            tvList[currentIndex].setVisibility(View.VISIBLE);
-                            imgList[currentIndex].setVisibility(View.INVISIBLE);
+                            pwdLayoutView.del(currentIndex);
 
                             currentIndex--;
                         }
@@ -146,33 +116,8 @@ public class PasswordView extends RelativeLayout {
 
     //设置监听方法，在第6位输入完成后触发
     public void setOnFinishInput(final OnPasswordInputFinish pass) {
-
-
-        tvList[5].addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-                if (s.toString().length() == 1) {
-
-                    String strPassword = "";     //每次触发都要先将strPassword置空，再重新获取，避免由于输入删除再输入造成混乱
-
-                    for (int i = 0; i < 6; i++) {
-                        strPassword += tvList[i].getText().toString().trim();
-                    }
-                    pass.inputFinish(strPassword);    //接口中要实现的方法，完成密码输入完成后的响应逻辑
-                }
-            }
-        });
+        pwdLayoutView.setOnPasswordInputFinish(pass);
+        pwdLayoutView.addFinishListener();
     }
 
     public VirtualKeyboardView getVirtualKeyboardView() {

@@ -17,7 +17,7 @@
         android:textColor="#333333"
         android:textSize="16sp" />
 
-    <com.lnyp.pswkeyboard.widget.VirtualKeyboardView
+    <com.moziqi.pwd.widget.VirtualKeyboardView
         android:id="@+id/virtualKeyboardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

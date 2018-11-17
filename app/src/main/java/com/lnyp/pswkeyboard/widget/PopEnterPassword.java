@@ -9,8 +9,8 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
-import com.lnyp.pswkeyboard.OnPasswordInputFinish;
 import com.lnyp.pswkeyboard.R;
+import com.moziqi.pwd.widget.OnPasswordInputFinish;
 
 
 /**
