@@ -24,4 +24,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:26.0.1'
     compile project(":pswkeyboardlibrary")
+//    compile 'com.github.moz1q1:WeChatPswKeyboard:v1.0.1'
 }
