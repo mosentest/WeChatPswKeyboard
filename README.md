@@ -5,7 +5,7 @@
 
 ![image](https://github.com/zuiwuyuan/WeChatPswKeyboard/blob/master/imgs/img.gif)
 
-
+在原作者上增加密码界面禁止截屏和辅助功能的使用
 
 To get a Git project into your build:
 
