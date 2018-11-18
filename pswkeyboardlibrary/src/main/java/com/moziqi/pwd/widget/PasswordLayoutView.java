@@ -53,6 +53,7 @@ public class PasswordLayoutView extends LinearLayout {
         //@drawable/pwd_input_area_bg
         setBackgroundDrawable(getResources().getDrawable(R.drawable.pwd_input_area_bg));
         initView(view);
+        //setClickable(true);
     }
 
 
@@ -128,6 +129,10 @@ public class PasswordLayoutView extends LinearLayout {
                     }
                     if (onPasswordInputFinish != null) {
                         onPasswordInputFinish.inputFinish(strPassword);    //接口中要实现的方法，完成密码输入完成后的响应逻辑
+                    }
+                } else {
+                    if (onPasswordInputFinish != null) {
+                        onPasswordInputFinish.inputCancel();
                     }
                 }
             }

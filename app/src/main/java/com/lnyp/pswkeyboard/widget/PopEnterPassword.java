@@ -70,6 +70,11 @@ public class PopEnterPassword extends PopupWindow {
 
                 }).start();
             }
+
+            @Override
+            public void inputCancel() {
+
+            }
         });
 
         // 监听X关闭按钮

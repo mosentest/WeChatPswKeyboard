@@ -5,4 +5,6 @@ package com.moziqi.pwd.widget;
  */
 public interface OnPasswordInputFinish {
     void inputFinish(String password);
+
+    void inputCancel();
 }
