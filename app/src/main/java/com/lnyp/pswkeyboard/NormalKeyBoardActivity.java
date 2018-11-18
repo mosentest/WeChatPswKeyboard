@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -11,7 +12,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.Toast;
 
+import com.moziqi.pwd.widget.PasswordLayoutListener;
 import com.moziqi.pwd.widget.VirtualKeyboardView;
 
 import java.lang.reflect.Method;
@@ -56,6 +59,15 @@ public class NormalKeyBoardActivity extends AppCompatActivity {
     private void initView() {
 
         textAmount = (EditText) findViewById(R.id.textAmount);
+        //测试点击事情
+//        com.moziqi.pwd.widget.PasswordLayoutView passwordLayoutView = (com.moziqi.pwd.widget.PasswordLayoutView) findViewById(R.id.psw_ly);
+//        passwordLayoutView.setClickListener(new PasswordLayoutListener() {
+//            @Override
+//            public void onclick() {
+//                Log.i("moziqi","aaaa");
+//                Toast.makeText(getApplicationContext(),"aaa",Toast.LENGTH_LONG).show();
+//            }
+//        });
 
         // 设置不调用系统键盘
         if (android.os.Build.VERSION.SDK_INT <= 10) {

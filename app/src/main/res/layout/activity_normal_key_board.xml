@@ -7,20 +7,35 @@
     tools:context="com.lnyp.pswkeyboard.NormalKeyBoardActivity">
 
 
-    <EditText
-        android:id="@+id/textAmount"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#FFFFFF"
-        android:inputType="numberDecimal"
-        android:padding="14dp"
-        android:textColor="#333333"
-        android:textSize="16sp" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/textAmount"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#FFFFFF"
+            android:inputType="numberDecimal"
+            android:padding="14dp"
+            android:textColor="#333333"
+            android:textSize="16sp" />
+
+        <com.moziqi.pwd.widget.PasswordLayoutView
+            android:id="@+id/psw_ly"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+        </com.moziqi.pwd.widget.PasswordLayoutView>
+    </LinearLayout>
+
 
     <com.moziqi.pwd.widget.VirtualKeyboardView
         android:id="@+id/virtualKeyboardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom" />
+
 
 </RelativeLayout>

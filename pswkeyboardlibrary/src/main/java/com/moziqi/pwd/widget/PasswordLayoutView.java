@@ -1,9 +1,7 @@
 package com.moziqi.pwd.widget;
 
 import android.content.Context;
-import android.os.Build;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -35,6 +33,8 @@ public class PasswordLayoutView extends LinearLayout {
 
     private OnPasswordInputFinish onPasswordInputFinish;
 
+    private PasswordLayoutListener mPasswordLayoutListener;
+
 
     public PasswordLayoutView(Context context) {
         this(context, null);
@@ -53,7 +53,6 @@ public class PasswordLayoutView extends LinearLayout {
         //@drawable/pwd_input_area_bg
         setBackgroundDrawable(getResources().getDrawable(R.drawable.pwd_input_area_bg));
         initView(view);
-        //setClickable(true);
     }
 
 
@@ -79,6 +78,24 @@ public class PasswordLayoutView extends LinearLayout {
         imgList[4] = (ImageView) view.findViewById(R.id.img_pass5);
         imgList[5] = (ImageView) view.findViewById(R.id.img_pass6);
 
+        for (int i = 0; i < 6; i++) {
+            imgList[i].setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mPasswordLayoutListener != null) {
+                        mPasswordLayoutListener.onclick();
+                    }
+                }
+            });
+            tvList[i].setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mPasswordLayoutListener != null) {
+                        mPasswordLayoutListener.onclick();
+                    }
+                }
+            });
+        }
     }
 
 
@@ -101,6 +118,12 @@ public class PasswordLayoutView extends LinearLayout {
     public void setOnPasswordInputFinish(OnPasswordInputFinish onPasswordInputFinish) {
         this.onPasswordInputFinish = onPasswordInputFinish;
     }
+
+
+    public void setClickListener(PasswordLayoutListener clickListener) {
+        this.mPasswordLayoutListener = clickListener;
+    }
+
 
     /**
      * 在第五个按钮上增加回调
