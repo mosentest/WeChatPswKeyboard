@@ -27,8 +27,7 @@ public class VirtualKeyboardView extends RelativeLayout {
     private ArrayList<Map<String, String>> valueList;    //有人可能有疑问，为何这里不用数组了？
     //因为要用Adapter中适配，用数组不能往adapter中填充
 
-    //没必要嵌套一层
-    //private RelativeLayout layoutBack;
+    private RelativeLayout layoutBack;
 
     public VirtualKeyboardView(Context context) {
         this(context, null);
@@ -45,7 +44,7 @@ public class VirtualKeyboardView extends RelativeLayout {
         valueList = new ArrayList<>();
 
         //没必要嵌套一层
-        //layoutBack = (RelativeLayout) view.findViewById(R.id.layoutBack);
+        layoutBack = (RelativeLayout) view.findViewById(R.id.layoutBack);
 
         gridView = (GridView) view.findViewById(R.id.gv_keybord);
 
@@ -58,7 +57,7 @@ public class VirtualKeyboardView extends RelativeLayout {
     }
 
     public RelativeLayout getLayoutBack() {
-        return this;
+        return layoutBack;
     }
 
     public ArrayList<Map<String, String>> getValueList() {
