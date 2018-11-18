@@ -27,7 +27,7 @@ Step 2. Add the dependency
 
 ```
 	dependencies {
-	        implementation 'com.github.moz1q1:WeChatPswKeyboard:v1.0.3'
+	        implementation 'com.github.moz1q1:WeChatPswKeyboard:v1.0.5'
 	}
 ```
 
