@@ -27,10 +27,43 @@ Step 2. Add the dependency
 
 ```
 	dependencies {
-	        implementation 'com.github.moz1q1:WeChatPswKeyboard:v1.0.5'
+	        implementation 'com.github.moz1q1:WeChatPswKeyboard:v1.0.6'
 	}
 ```
 
+
+
+```
+
+隐藏密码输入框
+
+<com.moziqi.pwd.widget.PasswordLayoutView
+            android:id="@+id/psw_ly"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
+            android:layout_marginTop="10dp" />
+
+虚拟键盘
+
+    <com.moziqi.pwd.widget.VirtualKeyboardView
+        android:id="@+id/virtualKeyboardView"
+        android:layout_width="match_parent"
+        app:virtualkeyboard_random="true"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom" />
+
+
+        <resources>
+            <declare-styleable name="VirtualKeyboardView">
+                <attr name="virtualkeyboard_random" format="boolean"></attr>  键盘是否随机
+                <attr name="virtualkeyboard_point" format="boolean"></attr>  是否显示 ‘.’ 数字键盘
+            </declare-styleable>
+        </resources>
+```
 Share this release:
 
 

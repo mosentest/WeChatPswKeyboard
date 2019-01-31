@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -78,26 +79,31 @@ public class PasswordLayoutView extends LinearLayout {
         imgList[4] = (ImageView) view.findViewById(R.id.img_pass5);
         imgList[5] = (ImageView) view.findViewById(R.id.img_pass6);
 
-        for (int i = 0; i < 6; i++) {
-            imgList[i].setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (mPasswordLayoutListener != null) {
-                        mPasswordLayoutListener.onclick();
-                    }
-                }
-            });
-            tvList[i].setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (mPasswordLayoutListener != null) {
-                        mPasswordLayoutListener.onclick();
-                    }
-                }
-            });
-        }
+//        for (int i = 0; i < 6; i++) {
+//            imgList[i].setOnClickListener(new OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    if (mPasswordLayoutListener != null) {
+//                        mPasswordLayoutListener.onclick();
+//                    }
+//                }
+//            });
+//            tvList[i].setOnClickListener(new OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    if (mPasswordLayoutListener != null) {
+//                        mPasswordLayoutListener.onclick();
+//                    }
+//                }
+//            });
+//        }
     }
 
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        return true;
+    }
 
     public void show(int currentIndex, String text) {
         tvList[currentIndex].setText(text);
@@ -122,6 +128,15 @@ public class PasswordLayoutView extends LinearLayout {
 
     public void setClickListener(PasswordLayoutListener clickListener) {
         this.mPasswordLayoutListener = clickListener;
+        //父view拦截子view的点击事件
+        setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mPasswordLayoutListener != null) {
+                    mPasswordLayoutListener.onclick();
+                }
+            }
+        });
     }
 
 

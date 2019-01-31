@@ -54,7 +54,10 @@ public class PasswordView extends RelativeLayout {
 
         pwdLayoutView = (com.moziqi.pwd.widget.PasswordLayoutView) view.findViewById(R.id.psw_ly);
 
-        initValueList();
+
+        valueList = virtualKeyboardView.getValueList();
+
+//        initValueList();
 
         setupView();
 
@@ -86,8 +89,8 @@ public class PasswordView extends RelativeLayout {
     private void setupView() {
 
         // 这里、重新为数字键盘gridView设置了Adapter
-        KeyBoardAdapter keyBoardAdapter = new KeyBoardAdapter(mContext, valueList);
-        gridView.setAdapter(keyBoardAdapter);
+//        KeyBoardAdapter keyBoardAdapter = new KeyBoardAdapter(mContext, valueList);
+//        gridView.setAdapter(keyBoardAdapter);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
