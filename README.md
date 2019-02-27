@@ -27,7 +27,7 @@ Step 2. Add the dependency
 
 ```
 	dependencies {
-	        implementation 'com.github.moz1q1:WeChatPswKeyboard:v1.0.6'
+	        implementation 'com.github.moz1q1:WeChatPswKeyboard:1.0.7'
 	}
 ```
 
@@ -63,6 +63,20 @@ Step 2. Add the dependency
                 <attr name="virtualkeyboard_point" format="boolean"></attr>  是否显示 ‘.’ 数字键盘
             </declare-styleable>
         </resources>
+
+        
+    <com.moziqi.pwd.widget.VerificationCodeView
+        android:id="@+id/verificationcodeview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:vcv_et_bg="@drawable/pwd_et_login_code"
+        app:vcv_et_cursor="@drawable/pwd_et_cursor"
+        app:vcv_et_inputType="number"
+        app:vcv_et_number="6"
+        app:vcv_et_text_color="@android:color/black"
+        app:vcv_et_text_size="14sp" />
 ```
 Share this release:
 
