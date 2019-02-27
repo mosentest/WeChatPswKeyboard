@@ -20,4 +20,7 @@ public class MainActivity extends AppCompatActivity {
     public void toPayKeyBoard(View view) {
         startActivity(new Intent(this, PaymentKeyBoardActivity.class));
     }
+    public void toMsgEnter(View view) {
+        startActivity(new Intent(this, MsgActivity.class));
+    }
 }

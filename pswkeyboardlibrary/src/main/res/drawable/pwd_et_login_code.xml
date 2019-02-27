@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--https://blog.csdn.net/never_cxb/article/details/47664111-->
+    <item android:bottom="2dp" android:state_window_focused="false">
+        <shape android:shape="rectangle">
+            <solid android:color="#C4C4C4" />
+            <size android:width="9999dp" android:height="1dp" />
+        </shape>
+    </item>
+
+    <item android:bottom="2dp" android:state_focused="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/black" />
+            <size android:width="9999dp" android:height="1dp" />
+        </shape>
+    </item>
+</selector>

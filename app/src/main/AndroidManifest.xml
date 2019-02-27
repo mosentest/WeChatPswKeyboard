@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".NormalKeyBoardActivity" />
-        <activity android:name=".PaymentKeyBoardActivity"></activity>
+        <activity android:name=".PaymentKeyBoardActivity" />
+        <activity android:name=".MsgActivity"></activity>
     </application>
 
 </manifest>
