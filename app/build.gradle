@@ -24,7 +24,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:26.0.1'
-//    compile project(":pswkeyboardlibrary")
+    compile project(":pswkeyboardlibrary")
 //    compile 'com.jyn.verificationcodeview:verificationcodeview:1.0.0'
-    compile 'com.github.moz1q1:WeChatPswKeyboard:1.0.7'
+//    compile 'com.github.moz1q1:WeChatPswKeyboard:1.0.7'
 }

@@ -64,7 +64,7 @@ Step 2. Add the dependency
             </declare-styleable>
         </resources>
 
-        
+
     <com.moziqi.pwd.widget.VerificationCodeView
         android:id="@+id/verificationcodeview"
         android:layout_width="match_parent"

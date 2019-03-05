@@ -20,4 +20,11 @@
         app:vcv_et_number="6"
         app:vcv_et_text_color="@android:color/black"
         app:vcv_et_text_size="14sp" />
+
+    <TextView
+        android:id="@+id/tv_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="重置" />
+
 </LinearLayout>
