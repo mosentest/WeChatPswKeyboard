@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -221,8 +222,42 @@ public class VerificationCodeView extends LinearLayout implements TextWatcher, V
             f.set(editText, mCursorDrawable);
         } catch (Exception ignored) {
         }
-        editText.addTextChangedListener(this);
-        editText.setOnFocusChangeListener(this);
+
+        if (i == mEtNumber - 1) {
+            editText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    if (s.length() != 0) {
+                        focus();
+                    }
+                    //如果最后一个输入框有字符，则返回结果
+                    if (!TextUtils.isEmpty(s.toString().trim())) {
+                        getResult();
+                    }
+                }
+            });
+            editText.setOnFocusChangeListener(new OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (hasFocus) {
+                        focus();
+                    }
+                }
+            });
+        } else {
+            editText.setOnFocusChangeListener(this);
+            editText.addTextChangedListener(this);
+        }
         editText.setOnKeyListener(this);
     }
 
@@ -278,10 +313,10 @@ public class VerificationCodeView extends LinearLayout implements TextWatcher, V
                 editText.setCursorVisible(false);
             }
         }
-        //如果最后一个输入框有字符，则返回结果
+        //强行最后一个一直拿焦点，不然删除时候出问题
         EditText lastEditText = (EditText) getChildAt(mEtNumber - 1);
-        if (lastEditText.getText().length() > 0) {
-            getResult();
+        if (!TextUtils.isEmpty(lastEditText.getText().toString())) {
+            lastEditText.requestFocus();
         }
     }
 

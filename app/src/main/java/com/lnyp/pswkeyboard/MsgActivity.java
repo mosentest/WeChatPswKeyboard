@@ -1,8 +1,11 @@
 package com.lnyp.pswkeyboard;
 
+import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.moziqi.pwd.widget.VerificationCodeView;
 
@@ -16,7 +19,8 @@ public class MsgActivity extends AppCompatActivity {
         verificationCodeView.setOnCodeFinishListener(new VerificationCodeView.OnCodeFinishListener() {
             @Override
             public void onComplete(String content) {
-
+                Log.i("moziqi", "content:" + content);
+//                Toast.makeText(getApplicationContext(), content, Toast.LENGTH_SHORT).show();
             }
         });
         findViewById(R.id.tv_reset).setOnClickListener(new View.OnClickListener() {
