@@ -14,7 +14,6 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -162,7 +161,7 @@ public class VerificationCodeView extends LinearLayout implements TextWatcher, V
     @SuppressLint("ResourceAsColor")
     private void initView() {
         for (int i = 0; i < mEtNumber; i++) {
-            EditText editText = new EditText(mContext);
+            ZanyEditText editText = new ZanyEditText(mContext);
             initEditText(editText, i);
             addView(editText);
             if (i == 0) { //设置第一个editText获取焦点
@@ -171,7 +170,7 @@ public class VerificationCodeView extends LinearLayout implements TextWatcher, V
         }
     }
 
-    private void initEditText(EditText editText, int i) {
+    private void initEditText(ZanyEditText editText, int i) {
         int childHPadding = 14;
         int childVPadding = 14;
 
@@ -281,7 +280,8 @@ public class VerificationCodeView extends LinearLayout implements TextWatcher, V
 
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_DEL) {
+        if (keyCode == KeyEvent.KEYCODE_DEL
+                && event.getAction() == KeyEvent.ACTION_DOWN) {
             backFocus();
         }
         return false;
@@ -301,10 +301,10 @@ public class VerificationCodeView extends LinearLayout implements TextWatcher, V
      */
     private void focus() {
         int count = getChildCount();
-        EditText editText;
+        ZanyEditText editText;
         //利用for循环找出还最前面那个还没被输入字符的EditText，并把焦点移交给它。
         for (int i = 0; i < count; i++) {
-            editText = (EditText) getChildAt(i);
+            editText = (ZanyEditText) getChildAt(i);
             if (editText.getText().length() < 1) {
                 editText.setCursorVisible(true);
                 editText.requestFocus();
@@ -314,7 +314,7 @@ public class VerificationCodeView extends LinearLayout implements TextWatcher, V
             }
         }
         //强行最后一个一直拿焦点，不然删除时候出问题
-        EditText lastEditText = (EditText) getChildAt(mEtNumber - 1);
+        ZanyEditText lastEditText = (ZanyEditText) getChildAt(mEtNumber - 1);
         if (!TextUtils.isEmpty(lastEditText.getText().toString())) {
             lastEditText.requestFocus();
         }
@@ -322,16 +322,16 @@ public class VerificationCodeView extends LinearLayout implements TextWatcher, V
 
     private void backFocus() {
         //博主手机不好，经常点一次却触发两次`onKey`事件，就设置了一个防止多点击，间隔100毫秒。
-        long startTime = System.currentTimeMillis();
-        EditText editText;
+        //long startTime = System.currentTimeMillis();
+        ZanyEditText editText;
         //循环检测有字符的`editText`，把其置空，并获取焦点。
         for (int i = mEtNumber - 1; i >= 0; i--) {
-            editText = (EditText) getChildAt(i);
-            if (editText.getText().length() >= 1 && startTime - endTime > 100) {
+            editText = (ZanyEditText) getChildAt(i);
+            if (editText.getText().length() >= 1) {// && startTime - endTime > 100
                 editText.setText("");
                 editText.setCursorVisible(true);
                 editText.requestFocus();
-                endTime = startTime;
+                //endTime = startTime;
                 return;
             }
         }
@@ -339,9 +339,9 @@ public class VerificationCodeView extends LinearLayout implements TextWatcher, V
 
     private void getResult() {
         StringBuffer stringBuffer = new StringBuffer();
-        EditText editText;
+        ZanyEditText editText;
         for (int i = 0; i < mEtNumber; i++) {
-            editText = (EditText) getChildAt(i);
+            editText = (ZanyEditText) getChildAt(i);
             stringBuffer.append(editText.getText());
         }
         if (onCodeFinishListener != null) {
@@ -350,9 +350,9 @@ public class VerificationCodeView extends LinearLayout implements TextWatcher, V
     }
 
     public void clearText() {
-        EditText editText;
+        ZanyEditText editText;
         for (int i = 0; i < mEtNumber; i++) {
-            editText = (EditText) getChildAt(i);
+            editText = (ZanyEditText) getChildAt(i);
             editText.setText("");
         }
         focus();
